@@ -1,6 +1,7 @@
 import { CURRENCY_NOTES, ACTION_TYPE } from "../utility/constant";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import CurrencyNotes from "./CurrencyNotes";
 
 const Deposit = () => {
   const [selectedCurrency, setCurrency] = useState();
@@ -9,7 +10,10 @@ const Deposit = () => {
   const dispatch = useDispatch();
 
   const handleAddDeposit = () => {
-    let currencyNotes = { note: selectedCurrency, qty: noOfNotes };
+    let currencyNotes = {
+      note: parseInt(selectedCurrency),
+      qty: parseInt(noOfNotes),
+    };
     dispatch({ type: ACTION_TYPE.DEPOSIT, payload: currencyNotes });
   };
 
@@ -17,7 +21,7 @@ const Deposit = () => {
     <main className="main-container">
       <header className="heading">Deposit</header>
       <section className="container">
-        <div>
+        <div className="currency">
           <label className="title">Denomination Currency</label>
           <select
             onChange={(e) => {
@@ -35,7 +39,7 @@ const Deposit = () => {
             ))}
           </select>
         </div>
-        <div>
+        <div className="quantity">
           <label className="title">Select quantity</label>
           <input
             type="text"
@@ -43,22 +47,21 @@ const Deposit = () => {
             onChange={(e) => {
               setNoteQty(e.target.value);
             }}
+            placeholder="Add number of notes"
           />
         </div>
         <div>
           <button onClick={handleAddDeposit}>Add</button>
         </div>
       </section>
-      <sectio>
-        {depositedCurrency.length > 0 &&
-          depositedCurrency.map((data, idx) => {
-            return (
-              <div key={idx}>
-                {data.note}--{data.qty}
-              </div>
-            );
-          })}
-      </sectio>
+      <section>
+        {depositedCurrency && depositedCurrency.length > 0 && (
+          <Fragment>
+            <label>Available Denomination</label>
+            <CurrencyNotes currencies={depositedCurrency} />
+          </Fragment>
+        )}
+      </section>
     </main>
   );
 };

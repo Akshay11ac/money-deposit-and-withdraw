@@ -1,0 +1,22 @@
+.currency-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 0.5px solid #333;
+  background-color: #eee;
+  border-radius: 6px;
+
+  .currency-item {
+    display: flex;
+    justify-content: space-around;
+    padding: 12px;
+  }
+
+  .table-header {
+    font-weight: 600;
+  }
+
+  .table-value {
+    font-weight: 400;
+  }
+}

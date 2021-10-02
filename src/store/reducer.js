@@ -7,7 +7,10 @@ const reducer = (state = initState, action) => {
     case ACTION_TYPE.DEPOSIT:
       return {
         ...state,
-        depositedCurrency: [...state.depositedCurrency, action.payload],
+        depositedCurrency: depositMoney(
+          state.depositedCurrency,
+          action.payload
+        ),
       };
     default:
       return state;
@@ -15,3 +18,22 @@ const reducer = (state = initState, action) => {
 };
 
 export default reducer;
+
+const depositMoney = (currency, newDeposit) => {
+  let isCurrencyPresent =
+    currency &&
+    currency.some((data) => data.note === newDeposit.note && data.qty > 0);
+
+  if (isCurrencyPresent) {
+    let updateCurrencyQty = currency.map((data) => {
+      if (data.note && data.note === newDeposit.note && data.qty > 0) {
+        return { ...data, qty: data.qty + newDeposit.qty };
+      } else {
+        return data;
+      }
+    });
+    return updateCurrencyQty;
+  } else {
+    return [...currency, { note: newDeposit.note, qty: newDeposit.qty }];
+  }
+};

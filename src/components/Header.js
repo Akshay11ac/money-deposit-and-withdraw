@@ -5,7 +5,7 @@ import { useState } from "react";
 const Header = () => {
   const buttons = [BUTTON_TYPE.DEPOSIT, BUTTON_TYPE.WITHDRAW];
   const route = useHistory();
-  const [activePage, setActivePage] = useState();
+  const [activePage, setActivePage] = useState(BUTTON_TYPE.DEPOSIT);
 
   const handleBtnClick = (routeTo) => {
     let url = routeTo === BUTTON_TYPE.DEPOSIT ? "/" : routeTo;
