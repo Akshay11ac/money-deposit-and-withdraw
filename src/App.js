@@ -10,10 +10,10 @@ function App() {
       <Header />
       <Switch>
         <Route exact path="/">
-          {Deposit}
+          <Deposit />
         </Route>
         <Route exact path="/WithDraw">
-          {WithDraw}
+          <WithDraw />
         </Route>
       </Switch>
     </div>
