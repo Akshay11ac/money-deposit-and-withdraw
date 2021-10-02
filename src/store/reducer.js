@@ -1,6 +1,6 @@
 import { ACTION_TYPE } from "../utility/constant";
 
-const initState = { depositedCurrency: [] };
+const initState = { depositedCurrency: [], withDrawCurrency: [] };
 
 const reducer = (state = initState, action) => {
   switch (action.type) {
@@ -8,6 +8,15 @@ const reducer = (state = initState, action) => {
       return {
         ...state,
         depositedCurrency: depositMoney(
+          state.depositedCurrency,
+          action.payload
+        ),
+      };
+    case ACTION_TYPE.WITHDRAW:
+      return {
+        ...state,
+        withDrawCurrency: action.payload,
+        depositedCurrency: balanceAfterWithDraw(
           state.depositedCurrency,
           action.payload
         ),
@@ -36,4 +45,15 @@ const depositMoney = (currency, newDeposit) => {
   } else {
     return [...currency, { note: newDeposit.note, qty: newDeposit.qty }];
   }
+};
+
+const balanceAfterWithDraw = (currentBalance, withDrawMoney) => {
+  let updateCurrencyBalance = currentBalance.map((data, idx) => {
+    if (data.note === withDrawMoney[idx].note) {
+      return { ...data, qty: data.qty - withDrawMoney[idx].qty };
+    } else {
+      return data;
+    }
+  });
+  return updateCurrencyBalance;
 };
