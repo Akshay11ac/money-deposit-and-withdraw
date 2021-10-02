@@ -15,3 +15,8 @@ export const CURRENCY_NOTES = [
   { note: 2, qty: 0 },
   { note: 1, qty: 0 },
 ];
+
+export const ACTION_TYPE = {
+  DEPOSIT: "Deposit",
+  WITHDRAW: "WithDraw",
+};
