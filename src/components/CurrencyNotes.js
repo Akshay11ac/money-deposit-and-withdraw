@@ -1,8 +1,10 @@
+import { CURRENCY } from "../utility/constant";
+
 const CurrencyNotes = ({ currencies }) => {
   return (
     <div className="currency-container">
       <div className="currency-item table-header">
-        <div>Currency Note</div>
+        <div>Currency Note ({CURRENCY})</div>
         <div>No of Totals</div>
         <div>Total</div>
       </div>

@@ -1,0 +1,19 @@
+.button-cs {
+  background: #ed5e5d;
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 6px;
+  padding: 10px;
+  border: 0.2px solid #fff;
+  min-width: 72px;
+}
+
+.button-cs:hover {
+  box-shadow: 0 0 0.25rem 0.125rem #e73883;
+}
+
+.button-cs:disabled {
+  pointer-events: none;
+  opacity: 0.7;
+}

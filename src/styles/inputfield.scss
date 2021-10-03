@@ -1,0 +1,42 @@
+input {
+  width: 196px;
+  height: 30px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: none;
+  color: #ff9c00;
+  padding: 0 4px;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #ff9c00;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #ff9c00;
+  opacity: 1; /* Firefox */
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+select {
+  width: 200px;
+  height: 30px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: none;
+  color: #ff9c00;
+  padding: 0 4px;
+}

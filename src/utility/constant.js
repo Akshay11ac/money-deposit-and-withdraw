@@ -20,3 +20,5 @@ export const ACTION_TYPE = {
   DEPOSIT: "Deposit",
   WITHDRAW: "WithDraw",
 };
+
+export const CURRENCY = "Rs";

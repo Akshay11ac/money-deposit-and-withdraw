@@ -1,0 +1,47 @@
+.main-container {
+  margin: 10px auto;
+  max-width: 600px;
+  padding: 16px;
+}
+
+.heading {
+  font-size: 21px;
+  font-weight: 700;
+  padding: 16px;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 8px;
+}
+
+.currency,
+.quantity {
+  display: flex;
+  flex-direction: column;
+  padding: 0 12px;
+
+  label {
+    font-weight: 600;
+    font-size: 16px;
+    padding: 8px;
+  }
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.input-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.btn-container {
+  align-self: flex-end;
+}
