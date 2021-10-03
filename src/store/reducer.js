@@ -10,7 +10,7 @@ const reducer = (state = initState, action) => {
         depositedCurrency: depositMoney(
           state.depositedCurrency,
           action.payload
-        ),
+        ).sort((a, b) => (a.note < b.note ? 1 : -1)),
       };
     case ACTION_TYPE.WITHDRAW:
       return {

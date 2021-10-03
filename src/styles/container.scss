@@ -24,24 +24,43 @@
   display: flex;
   flex-direction: column;
   padding: 0 12px;
-
-  label {
-    font-weight: 600;
-    font-size: 16px;
-    padding: 8px;
-  }
 }
 
 .title {
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 600;
+  padding-bottom: 12px;
 }
 
 .input-container {
   display: flex;
-  flex-wrap: wrap;
 }
 
 .btn-container {
   align-self: flex-end;
+}
+
+.withDraw-section {
+  width: 360px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    flex-direction: column;
+    .currency {
+      margin-bottom: 12px;
+    }
+
+    .btn-container {
+      align-self: center;
+    }
+
+    .input-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+  }
 }

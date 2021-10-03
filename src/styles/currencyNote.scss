@@ -4,6 +4,7 @@
   justify-content: space-around;
   background-color: #eee;
   border-radius: 6px;
+  margin-top: 8px;
 
   .currency-item {
     display: flex;
@@ -11,6 +12,10 @@
     padding: 12px;
     color: #ed5e5d;
     font-size: 16px;
+
+    div {
+      width: 200px;
+    }
   }
 
   .table-header {
@@ -20,4 +25,8 @@
   .table-value {
     font-weight: 400;
   }
+}
+
+.table-container {
+  margin: 12px 0;
 }

@@ -1,11 +1,11 @@
 input {
   width: 196px;
-  height: 30px;
+  height: 38px;
   font-size: 16px;
   border-radius: 6px;
   border: none;
   color: #ff9c00;
-  padding: 0 4px;
+  text-align: center;
 }
 
 ::-ms-input-placeholder {
@@ -33,10 +33,10 @@ input[type="number"] {
 
 select {
   width: 200px;
-  height: 30px;
+  height: 38px;
   font-size: 16px;
   border-radius: 6px;
   border: none;
   color: #ff9c00;
-  padding: 0 4px;
+  text-align: center;
 }

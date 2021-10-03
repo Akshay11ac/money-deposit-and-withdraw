@@ -1,9 +1,10 @@
-import { useState, Fragment, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ACTION_TYPE } from "../utility/constant";
 import CurrencyNotes from "./CurrencyNotes";
 import { balance } from "../utility/helper";
 import Error from "./Error";
+import ComponentHeader from "./ComponentHeader";
 
 const WithDraw = () => {
   const { withDrawCurrency, depositedCurrency } = useSelector((state) => state);
@@ -22,6 +23,7 @@ const WithDraw = () => {
     if (withDrawAmt > balance(depositedCurrency)) {
       return setWithDrawError("Insufficient Balance");
     } else {
+      setWithDrawError("");
       let currentWithDraw = parseInt(withDrawAmt);
       let withDrawAmount = depositedCurrency.map((data) => {
         let numberOfNotes = Math.floor(currentWithDraw / data.note);
@@ -51,34 +53,34 @@ const WithDraw = () => {
 
   return (
     <main className="main-container">
-      <header className="heading">WithDraw</header>
-      <section className="container">
-        <input
-          type="number"
-          value={withDrawAmt}
-          onChange={(e) => setWithDrawAmt(e.target.value)}
-          placeholder="Enter amount to withdraw"
-        />
-        <button
-          className="button-cs"
-          onClick={handleWithDraw}
-          disabled={btnStatus}
-        >
-          WithDraw
-        </button>
-      </section>
-      <section>
-        <h4 className="title">Balance: {balance(depositedCurrency) ?? ""}</h4>
+      <ComponentHeader title="WithDraw" amount={depositedCurrency} />
+      <section className="container withDraw-section">
+        <div className="currency">
+          <label className="title">WithDraw Amount</label>
+          <input
+            type="number"
+            value={withDrawAmt}
+            onChange={(e) => setWithDrawAmt(e.target.value)}
+            placeholder="Enter amount"
+          />
+        </div>
+        <div className="btn-container">
+          <button
+            className="button-cs"
+            onClick={handleWithDraw}
+            disabled={btnStatus}
+          >
+            WithDraw
+          </button>
+        </div>
       </section>
       {withDrawError && <Error error={withDrawError} />}
-      <section>
-        {withDrawCurrency && withDrawCurrency.length > 0 && (
-          <Fragment>
-            <label>WithDraw denomination currency</label>
-            <CurrencyNotes currencies={withDrawCurrency} />
-          </Fragment>
-        )}
-      </section>
+      {withDrawCurrency && withDrawCurrency.length > 0 && !withDrawError && (
+        <section className="table-container">
+          <label className="title">WithDraw denomination currency</label>
+          <CurrencyNotes currencies={withDrawCurrency} />
+        </section>
+      )}
     </main>
   );
 };

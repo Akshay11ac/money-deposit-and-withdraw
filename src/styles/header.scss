@@ -21,6 +21,10 @@
 
   .header-btn:hover {
     background-color: #f0c0c0;
-    color: #ed5e5d;
+    color: #fff;
+  }
+
+  .header-btn:active {
+    transform: scale(0.8);
   }
 }

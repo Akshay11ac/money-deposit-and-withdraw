@@ -1,9 +1,10 @@
 import { CURRENCY_NOTES, ACTION_TYPE, CURRENCY } from "../utility/constant";
-import { Fragment, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import CurrencyNotes from "./CurrencyNotes";
 import { balance } from "../utility/helper";
 import Error from "./Error";
+import ComponentHeader from "./ComponentHeader";
 
 const Deposit = () => {
   const [selectedCurrency, setCurrency] = useState();
@@ -35,7 +36,7 @@ const Deposit = () => {
 
   return (
     <main className="main-container">
-      <header className="heading">Deposit</header>
+      <ComponentHeader title="Deposit" amount={depositedCurrency} />
       <section className="container">
         <div className="input-container">
           <div className="currency">
@@ -79,18 +80,15 @@ const Deposit = () => {
           </button>
         </div>
       </section>
-      <section>
-        <h4 className="title">Balance: {balance(depositedCurrency) ?? ""}</h4>
-      </section>
       {depositError && <Error error={depositError} />}
-      <section>
-        {depositedCurrency && depositedCurrency.length > 0 && (
-          <Fragment>
-            <label>Available Denomination</label>
+      {depositedCurrency &&
+        depositedCurrency.length > 0 &&
+        balance(depositedCurrency) > 0 && (
+          <section className="table-container">
+            <label className="title">Available Denomination</label>
             <CurrencyNotes currencies={depositedCurrency} />
-          </Fragment>
+          </section>
         )}
-      </section>
     </main>
   );
 };
