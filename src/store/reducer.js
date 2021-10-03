@@ -1,6 +1,10 @@
 import { ACTION_TYPE } from "../utility/constant";
 
-const initState = { depositedCurrency: [], withDrawCurrency: [] };
+const initState = {
+  depositedCurrency: [],
+  withDrawCurrency: [],
+  withDrawTransaction: [],
+};
 
 const reducer = (state = initState, action) => {
   switch (action.type) {
@@ -20,6 +24,7 @@ const reducer = (state = initState, action) => {
           state.depositedCurrency,
           action.payload
         ),
+        withDrawTransaction: [...state.withDrawTransaction, action.payload],
       };
     default:
       return state;

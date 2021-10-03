@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { ACTION_TYPE } from "../utility/constant";
+import { ACTION_TYPE, CURRENCY } from "../utility/constant";
 import CurrencyNotes from "./CurrencyNotes";
 import { balance } from "../utility/helper";
 import Error from "./Error";
 import ComponentHeader from "./ComponentHeader";
 
 const WithDraw = () => {
-  const { withDrawCurrency, depositedCurrency } = useSelector((state) => state);
+  const { withDrawCurrency, depositedCurrency, withDrawTransaction } =
+    useSelector((state) => state);
   const [withDrawAmt, setWithDrawAmt] = useState();
   const dispatch = useDispatch();
   const [withDrawError, setWithDrawError] = useState("");
@@ -40,7 +41,7 @@ const WithDraw = () => {
       });
       if (currentWithDraw) {
         return setWithDrawError(
-          "Please select the money in available demonation"
+          "Please select the withdraw money in available currency notes"
         );
       } else {
         dispatch({
@@ -62,6 +63,7 @@ const WithDraw = () => {
             value={withDrawAmt}
             onChange={(e) => setWithDrawAmt(e.target.value)}
             placeholder="Enter amount"
+            min={1}
           />
         </div>
         <div className="btn-container">
@@ -77,8 +79,28 @@ const WithDraw = () => {
       {withDrawError && <Error error={withDrawError} />}
       {withDrawCurrency && withDrawCurrency.length > 0 && !withDrawError && (
         <section className="table-container">
-          <label className="title">WithDraw denomination currency</label>
+          <label className="title">WithDraw Currency Notes</label>
           <CurrencyNotes currencies={withDrawCurrency} />
+        </section>
+      )}
+      {withDrawTransaction && withDrawTransaction.length > 0 && (
+        <section className="transaction-container">
+          <label className="title">Transaction</label>
+          <div className="currency-container">
+            {withDrawTransaction.map((data, idx) => {
+              return (
+                <div className="transaction currency-item">
+                  <div>Transaction-{idx + 1}</div>
+                  <div>
+                    Amount- {CURRENCY}{" "}
+                    {data.reduce((acc, current) => {
+                      return acc + current.note * current.qty;
+                    }, 0)}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </section>
       )}
     </main>

@@ -6,7 +6,7 @@ const ComponentHeader = ({ title, amount }) => {
     <section className="heading">
       <h3>{title}</h3>
       <h4>
-        Your Balance is: {CURRENCY} {balance(amount)}
+        Your Balance: {CURRENCY} {balance(amount)}
       </h4>
     </section>
   );

@@ -66,7 +66,7 @@ const Deposit = () => {
                 setNoteQty(e.target.value);
               }}
               placeholder="Add number of notes"
-              min={0}
+              min={1}
             />
           </div>
         </div>
@@ -85,7 +85,7 @@ const Deposit = () => {
         depositedCurrency.length > 0 &&
         balance(depositedCurrency) > 0 && (
           <section className="table-container">
-            <label className="title">Available Denomination</label>
+            <label className="title">Available Currency Notes</label>
             <CurrencyNotes currencies={depositedCurrency} />
           </section>
         )}
